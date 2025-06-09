@@ -46,35 +46,38 @@
 | 102    | 8812121212 |
 | 102    | 9900012222 |
 
-### 2NF (Second Normal Form)
-**Conditions**:
-1. Must be in 1NF
-2. No non-prime attribute is dependent on the proper subset of any candidate key of table.
+---
 
-### Example: Teacher-Subject Database
+### 2NF (Second Normal Form)
+
+#### Conditions:
+- Must be in 1NF
+- No non-prime attribute is dependent on the proper subset of any candidate key of table.
+
+#### Example: Teacher-Subject Database
 
 **This Table (Violates 2NF):**
-```markdown
+
 | teacher_id | subject  | teacher_age |
 |------------|----------|-------------|
 | 111        | Maths    | 38          |
 | 111        | Physics  | 38          |
 | 222        | Biology  | 38          |
 
-### Problems:
+#### Problems:
 
-   -  Redundancy: Teacher age repeats for each subject
-   -  Update Anomaly: Changing age requires multiple  updates
-   -  Partial Dependency: teacher_age depends only on teacher_id (a subset of the candidate key {teacher_id, subject})
+   -  **Redundancy**: Teacher age repeats for each subject
+   -  **Update Anomaly**: Changing age requires multiple  updates
+   -  **Partial Dependency**: teacher_age depends only on teacher_id (a subset of the candidate key {teacher_id, subject})
 
-   ### Soultion for the above table
-   Teacher Details:
+   #### Soultion for the above table
+   **Teacher Details**
 | teacher_id | teacher_age |
 |------------|-------------|
 | 111        | 38          |
 | 222        | 38          |
 
-Teacher Subjects:
+**Teacher Subjects:**
 | teacher_id | subject  |
 |------------|----------|
 | 111        | Maths    |
@@ -82,13 +85,14 @@ Teacher Subjects:
 
 
 ### 3NF (Third Normal Form)
-**Conditions**:
+
+#### **Conditions**:
 1. Must be in 2NF
 2. Tansitive functional dependency of non-prime attribute on any super key should be removed.
 
-# Transitive Dependency in DBMS
+#### Transitive Dependency in DBMS
 
-## Definition
+##### Definition
 A **transitive dependency** occurs when a functional dependency is indirectly formed through another attribute. 
 
 Given attributes X, Y, and Z:  
@@ -97,14 +101,13 @@ Given attributes X, Y, and Z:
 2. `Y ↛ X` (Y does not determine X)
 3. `Y → Z`
 
-## Key Characteristics
+##### Key Characteristics
 - Requires **at least three attributes** in a relation
 - Primary target for elimination in **Third Normal Form (3NF)**
 - Creates data redundancy and update anomalies
 
-## Example
-Consider a book database:
-
+#### Example
+**Consider a book database:**
 | Book           | Author              | Author_Age |
 |----------------|---------------------|------------|
 | Game of Thrones| George R.R. Martin  | 66         |
@@ -116,19 +119,23 @@ Consider a book database:
 3. `Author → Author_Age`
 
 This creates a transitive dependency:  
+
 `Book → Author_Age`
 
-## Normalization Solution (3NF)
+#### Normalization Solution (3NF)
 To eliminate:
 1. Create separate tables for directly dependent attributes
 2. Establish relationships through foreign keys
 
 **Normalized Structure:**
-```markdown
-BOOKS:
-| Book           | Author              |
 
-AUTHORS:
+**BOOKS TABLE**:
+| Book           | Author              |
+|----------------|---------------------|
+| Game of Thrones| George R.R. Martin  |
+| Harry Potter   | J.K. Rowling        |
+
+**AUTHORS:**
 | Author              | Author_Age |
 |---------------------|------------|
 | George R.R. Martin  | 66         |
@@ -141,19 +148,21 @@ AUTHORS:
 |--------|---------|----------|--------------|
 | 1001   | 282005  | Agra     | Dayal Bagh   |
 
-### Problems:
+#### Problems:
 
    -  emp_zip → emp_city creates transitive dependency (emp_id → emp_zip → emp_city)
 
-   ### Solution for the above table
-Employees:
+   #### Solution for the above table
+
+   **Employees:**
 | emp_id | emp_zip |
 
-ZIP Codes:
+**ZIP Codes:**
 | emp_zip | emp_city | emp_district |
 
 ### Boyce-Codd Normal Form (BCNF)
-**Conditions**:
+
+#### **Conditions**:
 1. Must be in 3NF
 2. Every functional dependency X->Y, X should be the super key of the table.
 
@@ -167,23 +176,29 @@ ZIP Codes:
 
    -  emp_dept → dept_manager where emp_dept isn't a superkey
 
-   ### Solution for the above table
-Departments:
+#### Solution for the above table:
+
+**Departments:**
+
 | emp_dept | dept_manager |
+|----------|--------------|
+| D001     | John Smith   |
 
-Assignments:
+**Assignments:**
+
 | emp_id | emp_dept |
+|--------|----------|
+| 1001   | D001     |
 
+---
 
-# Transaction Properties
-A transaction is an action, or a series of
-actions, carried out by a single user or an
-application program, which reads or updates
-the contents of a database.
+## Transaction Properties
+
+A transaction is an action, or a series of actions, carried out by a single user or an application program, which reads or updates the contents of a database.
 
 A transaction has four key properties that are abbreviated **ACID**.
 
-## ACID is a shortformed name for:
+### ACID is a shortform name for:
 - **Atomic**
 - **Consistent**
 - **Isolated**
