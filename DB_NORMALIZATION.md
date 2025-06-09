@@ -173,3 +173,53 @@ Departments:
 
 Assignments:
 | emp_id | emp_dept |
+
+
+# Transaction Properties
+A transaction is an action, or a series of
+actions, carried out by a single user or an
+application program, which reads or updates
+the contents of a database.
+
+A transaction has four key properties that are abbreviated **ACID**.
+
+## ACID is a shortformed name for:
+- **Atomic**
+- **Consistent**
+- **Isolated**
+- **Durability**
+
+---
+
+## ACID Properties
+
+### 1. **Atomicity**
+- Transactions are atomic – they don’t have parts (conceptually).
+- Transactions can’t be executed partially; it should not be detectable that they interleave with another transaction.
+
+### 2. **Consistency**
+- Transactions take the database from one consistent state into another.
+- In the middle of a transaction, the database might not be consistent.
+
+### 3. **Isolation**
+- The effects of a transaction are not visible to other transactions until it has completed.
+- From outside, the transaction has either happened or not.
+- This actually sounds like a consequence of **atomicity**.
+
+### 4. **Durability**
+- Once a transaction has completed, its changes are made permanent.
+- Even if the system crashes, the effects of a transaction must remain in place.
+
+---
+
+## Example of a Transaction
+
+### Transfer £50 from account A to account B
+
+```text
+Read(A)
+A = A - 50
+Write(A)
+Read(B)
+B = B + 50
+Write(B)
