@@ -142,39 +142,45 @@ To eliminate:
 | J.K. Rowling        | 49         |
 
 
-**This Table (Violates 3NF):**
-```markdown
+### This Table (Violates 3NF):
+
 | emp_id | emp_zip | emp_city | emp_district |
 |--------|---------|----------|--------------|
 | 1001   | 282005  | Agra     | Dayal Bagh   |
 
 #### Problems:
+- `emp_zip → emp_city` creates a transitive dependency (`emp_id → emp_zip → emp_city`)
 
-   -  emp_zip → emp_city creates transitive dependency (emp_id → emp_zip → emp_city)
+#### Solution for the above table:
 
-   #### Solution for the above table
+**Employees:**
 
-   **Employees:**
 | emp_id | emp_zip |
+|--------|---------|
+| 1001   | 282005  |
 
 **ZIP Codes:**
+
 | emp_zip | emp_city | emp_district |
+|---------|----------|--------------|
+| 282005  | Agra     | Dayal Bagh   |
+
+---
 
 ### Boyce-Codd Normal Form (BCNF)
 
 #### **Conditions**:
 1. Must be in 3NF
-2. Every functional dependency X->Y, X should be the super key of the table.
+2. Every functional dependency `X -> Y`, where X should be the super key of the table.
 
-**This Table (Violates BCNF):**
-```markdown
+#### **This Table (Violates BCNF):**
+
 | emp_id | emp_dept | dept_manager |
 |--------|----------|--------------|
 | 1001   | D001     | John Smith   |
 
-### Problems:
-
-   -  emp_dept → dept_manager where emp_dept isn't a superkey
+#### Problems:
+- `emp_dept → dept_manager` where `emp_dept` isn't a superkey.
 
 #### Solution for the above table:
 
