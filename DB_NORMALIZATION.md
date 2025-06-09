@@ -24,10 +24,10 @@
 ---
 
 ## Normal Forms
-### 1NF (First Normal Form)
-### 2NF (Second Normal Form)
-### 3NF (Third Normal Form)
-### BCNF (Boyce & Codd normal Form)
+##### 1NF (First Normal Form)
+##### 2NF (Second Normal Form)
+##### 3NF (Third Normal Form)
+##### BCNF (Boyce & Codd normal Form)
 
 
 ### 1NF (First Normal Form)
