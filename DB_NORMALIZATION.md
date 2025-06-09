@@ -46,8 +46,6 @@
 | 102    | 8812121212 |
 | 102    | 9900012222 |
 
----
-
 ### 2NF (Second Normal Form)
 **Conditions**:
 1. Must be in 1NF
